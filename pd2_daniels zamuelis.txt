@@ -1,0 +1,95 @@
+class Skolens:
+
+def __init__(self, vards, uzvards):
+
+self.vards = vards
+
+self.uzvards = uzvards
+
+self.sekmes = []
+
+
+
+def pievienot_sekmi(self, sekme):
+
+self.sekmes.append(sekme)
+
+
+
+def vidēja_sekme(self):
+
+if self.sekmes:
+
+return sum(self.sekmes) / len(self.sekmes)
+
+else:
+
+return 0
+
+
+
+def iegut_sakartojumu(self):
+
+return f"{self.vards} {self.uzvards}"
+
+
+from skolens import Skolens
+
+
+
+class Skola:
+
+def __init__(self, nosaukums):
+
+self.nosaukums = nosaukums
+
+self.skoleni = []
+
+def pievienot_skolenu(self, skolens):
+
+self.skoleni.append(skolens)
+
+def saraksts_vards_uzvards(self):
+
+return [skolens.iegut_sakartojumu() for skolens in self.skoleni]
+
+def labakais(self):
+
+if not self.skoleni:
+
+return None
+
+return max(self.skoleni, key=lambda s: s.vidēja_sekme())
+
+
+from skolens import Skolens
+
+from skola import Skola
+
+
+mana_skola = Skola("Rīgas 10. vidusskola")
+
+
+sk1 = Skolens("Anna", "Ozola")
+
+sk1.pievienot_sekmi(8)
+
+sk1.pievienot_sekmi(9)
+
+
+sk2 = Skolens("Jānis", "Bērziņš")
+
+sk2.pievienot_sekmi(10)
+
+sk2.pievienot_sekmi(7)
+
+mana_skola.pievienot_skolenu(sk1)
+
+mana_skola.pievienot_skolenu(sk2)
+
+print("Skolēni skolā:", mana_skola.saraksts_vards_uzvards())
+
+labakais_skolens = mana_skola.labakais()
+
+print("Labākais skolēns:", labakais_skolens.iegut_sakartojumu(), "ar vidējo sekmi", labakais_skolens.vidēja_sekme())
+
